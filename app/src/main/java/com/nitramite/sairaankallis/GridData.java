@@ -27,6 +27,10 @@ public class GridData {
         return Consumption;
     }
 
+    public String getConsumptionText() {
+        return Consumption + "MW";
+    }
+
     public void setProduction(double production) {
         Production = production;
     }
