@@ -28,7 +28,7 @@ public class GridData {
     }
 
     public String getConsumptionText() {
-        return Consumption + "MW";
+        return (int) Consumption + " MW";
     }
 
     public void setProduction(double production) {
@@ -48,8 +48,8 @@ public class GridData {
     }
 
     public String getElectricityPriceInFinlandCentsKilowattHour() {
-        double price = ElectricityPriceInFinland / 1000;
-        return df.format(price) + "snt/kWh";
+        double priceCents = (ElectricityPriceInFinland / 1000) * 100;
+        return df.format(priceCents) + " snt/kWh";
     }
 
 }
