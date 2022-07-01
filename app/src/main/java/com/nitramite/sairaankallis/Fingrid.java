@@ -2,6 +2,9 @@ package com.nitramite.sairaankallis;
 
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
@@ -33,7 +36,7 @@ public class Fingrid {
             try (Response response = client.newCall(request).execute()) {
                 GridData gridData = ParseGridData(response.body().string());
                 this.fingridInterface.getDataSuccess(gridData);
-            } catch (IOException e) {
+            } catch (IOException | JSONException e) {
                 Log.e(TAG, e.toString());
                 this.fingridInterface.getDataFailed(e.toString());
             }
@@ -42,20 +45,15 @@ public class Fingrid {
     }
 
 
-    private GridData ParseGridData(final String responseData) {
+    private GridData ParseGridData(final String responseData) throws JSONException {
         GridData gridData = new GridData();
-
-        Log.i(TAG,  responseData);
-
-
+        // Log.i(TAG,  responseData);
+        JSONObject json = new JSONObject(responseData);
+        gridData.setElectricityPriceInFinland(json.getDouble("ElectricityPriceInFinland"));
+        gridData.setConsumption(json.getDouble("Consumption"));
+        gridData.setProduction(json.getDouble("Production"));
+        gridData.setNetImportExport(json.getDouble("NetImportExport"));
         return gridData;
-    }
-
-
-    public class GridData {
-        public GridData() {
-
-        }
     }
 
 }

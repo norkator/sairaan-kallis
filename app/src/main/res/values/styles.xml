@@ -6,7 +6,8 @@
     </style>
 
     <style name="Widget.SairaanKallis.AppWidget.InnerView" parent="android:Widget">
-        <item name="android:background">?android:attr/colorBackground</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:background">@color/code_view_bg_color</item>
+        <item name="android:textColor">@color/white</item>
     </style>
+
 </resources>
