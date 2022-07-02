@@ -1,8 +1,12 @@
 package com.nitramite.sairaankallis;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 /**
@@ -14,6 +18,16 @@ public class EnergyPriceWidget extends AppWidgetProvider implements FingridInter
     private Context context;
     private AppWidgetManager appWidgetManager;
     private int[] appWidgetIds;
+
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        ComponentName thisAppWidget = new ComponentName(context.getPackageName(), EnergyPriceWidget.class.getName());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisAppWidget);
+        onUpdate(context, appWidgetManager, appWidgetIds);
+    }
 
 
     static void updateAppWidget(
@@ -29,6 +43,15 @@ public class EnergyPriceWidget extends AppWidgetProvider implements FingridInter
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.energy_price);
         views.setTextViewText(R.id.usage_text, widgetUsageText);
         views.setTextViewText(R.id.price_text, widgetPriceText);
+
+
+        // click view to update intent
+        Intent intentSync = new Intent(context, EnergyPriceWidget.class);
+        intentSync.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        PendingIntent pendingSync = PendingIntent.getBroadcast(
+                context, 0, intentSync, PendingIntent.FLAG_IMMUTABLE);
+        views.setOnClickPendingIntent(R.id.widget_layout, pendingSync);
+
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
