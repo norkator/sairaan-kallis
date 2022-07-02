@@ -5,7 +5,6 @@
     android:initialLayout="@layout/energy_price"
     android:minWidth="110dp"
     android:minHeight="40dp"
-    android:previewImage="@drawable/example_appwidget_preview"
     android:previewLayout="@layout/energy_price"
     android:resizeMode="horizontal|vertical"
     android:targetCellWidth="2"

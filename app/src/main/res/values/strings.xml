@@ -7,4 +7,5 @@
     <string name="usage_text">MW</string>
     <string name="price_text">snt/kWh</string>
     <string name="default_value">-</string>
+    <string name="main_menu_widget_hint_text">Mene laitteesi etunäyttöön ja valitse widgetti listalta Sairaan Kallis sovelluksen Sähkötilastoja widgetti. Widgetti on sovelluksen ainut ominaisuus.</string>
 </resources>
