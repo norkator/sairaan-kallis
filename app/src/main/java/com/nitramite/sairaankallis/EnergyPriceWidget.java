@@ -38,11 +38,13 @@ public class EnergyPriceWidget extends AppWidgetProvider implements FingridInter
     ) {
         String widgetUsageText = gridData.getConsumptionText();
         String widgetPriceText = gridData.getElectricityPriceInFinlandCentsKilowattHour();
+        String widgetStatusText = gridData.getStatusString(context);
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.energy_price);
         views.setTextViewText(R.id.usage_text, widgetUsageText);
         views.setTextViewText(R.id.price_text, widgetPriceText);
+        views.setTextViewText(R.id.status_text, widgetStatusText);
 
 
         // click view to update intent

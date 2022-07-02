@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Sairaan Kallis</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">This is an app widget description</string>
+    <string name="add_widget">Widgetti</string>
+    <string name="app_widget_description">Sähkötilastoja</string>
+    <string name="status_normal">Normaali tila</string>
+    <string name="status_issue">Vikatila</string>
+    <string name="usage_text">MW</string>
+    <string name="price_text">snt/kWh</string>
+    <string name="default_value">-</string>
 </resources>

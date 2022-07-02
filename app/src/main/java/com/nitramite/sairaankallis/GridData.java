@@ -1,5 +1,7 @@
 package com.nitramite.sairaankallis;
 
+import android.content.Context;
+
 import java.text.DecimalFormat;
 
 public class GridData {
@@ -10,6 +12,7 @@ public class GridData {
     private double Consumption = 0.0;
     private double Production = 0.0;
     private double NetImportExport = 0.0;
+    private int Status = 1;
 
     public void setElectricityPriceInFinland(double electricityPriceInFinland) {
         ElectricityPriceInFinland = electricityPriceInFinland;
@@ -28,7 +31,7 @@ public class GridData {
     }
 
     public String getConsumptionText() {
-        return (int) Consumption + " MW";
+        return String.valueOf((int) Consumption);
     }
 
     public void setProduction(double production) {
@@ -49,7 +52,15 @@ public class GridData {
 
     public String getElectricityPriceInFinlandCentsKilowattHour() {
         double priceCents = (ElectricityPriceInFinland / 1000) * 100;
-        return df.format(priceCents) + " snt/kWh";
+        return df.format(priceCents);
+    }
+
+    public void setStatus(int status) {
+        Status = status;
+    }
+
+    public String getStatusString(Context context) {
+        return Status == 1 ? context.getString(R.string.status_normal) : context.getString(R.string.status_issue);
     }
 
 }
